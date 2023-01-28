@@ -1,0 +1,47 @@
+Uma loja necessita de um sistema para realizar as funções mais comum do dia a dia. Necessidades da loja:
+
+ 
+
+A Loja precisa de registro de Vendedores:
+OK -  Contendo informações do vendedor, a data que foi contratado, a porcentagem de sua comissão, e o horário de entrada e saída do trabalho desse vendedor;
+OK -  Uma listagem de todos os vendedores ativos da loja (por ordem alfabética) com nome e informando se o vendedor está trabalhando ou não (baseado na hora de trabalho dele);
+OK -  O detalhamento do vendedor contendo todas as informações do mesmo, assim como um resumo de vendas mensais contendo quantidade de vendas, valor total das vendas e comissão (ordenada por meses mais recente primeiro).
+
+ 
+
+A Loja também precisa de um registro de Clientes:
+OK - Contendo informações do cliente como documento para emitir notas, endereço para entrega, e vendedor que atende esse cliente (este deve ser vinculado ao registro de Vendedores);
+OK -  Uma listagem de todos os clientes ativos (por ordem alfabética) contendo o nome do cliente, o vendedor que o atende, e a data de última compra realizada;
+OK - O detalhamento do cliente, contendo todas as suas informações, o nome do vendedor que o atende, e uma lista de todas suas compras (ordenada por data, recentes primeiro).
+
+ 
+
+Por fim, a loja precisa de um registro de Vendas:
+OK -  Contendo o cliente(vinculado ao registro de Clientes), o vendedor (vinculado ao registro de Vendedores), a data da compra, o valor da compra e a forma de pagamento (cartão, dinheiro ou pix);
+OK - Uma listagem de vendas ativas (por ordem de última compra) informando o nome do cliente, o valor;
+OK - O detalhamento da venda, contendo todos os dados do cliente, todos os dados da venda e o nome do vendedor. 
+
+A loja precisa conseguir editar qualquer um dos registros acima;
+A loja precisa conseguir desativar qualquer um dos registros acima para não ser exibido nas listagens;
+
+ 
+
+A loja precisa de um resumo que informe os dados a seguir mensurado por mês:
+- Quantidade de vendas por forma de pagamento;
+- Valor total de vendas por forma de pagamento;
+- Quantidade total de todas as formas de pagamento;
+- Valor total de vendas de todas as formas de pagamentos;
+- Quantidade total de comissão;
+- Quantidade de clientes novos;
+- O Relatório pode ser acessado a qualquer momento, e de qualquer mês.
+
+ 
+
+A loja solicitou que fosse feito uma api de auxílio no preenchimento de dados de endereço, para que ela informe o CEP de um cliente, e consiga recuperar os dados referente aquele CEP
+
+ 
+
+Observações:
+-Considere que todos os vendedores trabalham todos os dias, então se preocupe com a validação de horários e não dos dias da semana;
+-Utilize o timestamp do mongoose para salvar quando um registro foi alterado / editado;
+-Utilize o AXIOS para fazer a consulta de cep na api do https://viacep.com.br.

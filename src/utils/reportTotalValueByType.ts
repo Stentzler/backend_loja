@@ -1,4 +1,4 @@
-const reportSales = (report: any, comission: number) => {
+const reportTotalValueByType = (report: any) => {
 	const saleReport: any[] = [];
 
 	//Criando novo objeto
@@ -6,9 +6,8 @@ const reportSales = (report: any, comission: number) => {
 		const updatedReport = {
 			ano: report._id.ano,
 			mes: report._id.mes,
-			totalDeVendas: report.totalDeVendas,
-			valorTotalVendido: report.valorTotal,
-			comissao: ((report.valorTotal / 100) * comission).toFixed(2),
+			formaDePagamento: report._id.pagamento,
+			totalVendido: report.totalVendido.toFixed(2),
 			dateFormat: new Date(`${report._id.ano}/${report._id.mes}/01`),
 		};
 		saleReport.push(updatedReport);
@@ -22,4 +21,4 @@ const reportSales = (report: any, comission: number) => {
 		});
 };
 
-export default reportSales;
+export default reportTotalValueByType;

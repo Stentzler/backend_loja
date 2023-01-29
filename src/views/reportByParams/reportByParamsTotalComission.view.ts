@@ -1,7 +1,21 @@
 import Sale from '../../models/sale.models';
 import Vendor from '../../models/vendor.models';
+import {AppError} from '../../utils/appError';
 
-const reportTotalComissionView = async () => {
+const reportByParamsTotalComissionView = async (
+	year: number,
+	month: number
+) => {
+	const now = new Date();
+	const currentYear = Number(now.getFullYear());
+
+	if (year > currentYear) {
+		throw new AppError(`Valor Máximo para ano é ${currentYear}`);
+	}
+
+	if (month > 12 || month < 1) {
+		throw new AppError('Mês deve ser um número entre 1 e 12');
+	}
 	const salesPerVendor = await Sale.aggregate([
 		{
 			$group: {
@@ -51,9 +65,9 @@ const reportTotalComissionView = async () => {
 		resultComissionPerMonth.push(newObj);
 	}
 
-	return resultComissionPerMonth.sort(
-		(a, b) => Number(b.dateFormat) - Number(a.dateFormat)
-	);
+	return resultComissionPerMonth
+		.sort((a, b) => Number(b.dateFormat) - Number(a.dateFormat))
+		.filter(item => item.ano === year && item.mes === month);
 };
 
-export default reportTotalComissionView;
+export default reportByParamsTotalComissionView;

@@ -7,6 +7,7 @@ import reportTotalSalesPerMonthController from '../controllers/report/reportTota
 import reportTotalSoldPerMonthController from '../controllers/report/reportTotalSoldPerMonth.controller';
 import reportByParamsNewCostumersController from '../controllers/reportByParams/reportByParamsNewCostumers.controller';
 import reportByParamsSalesPerTypeController from '../controllers/reportByParams/reportByParamsSalesPerType.controller';
+import reportByParamsTotalComissionController from '../controllers/reportByParams/reportByParamsTotalComission.controller';
 import reportByParamsTotalPerTypeController from '../controllers/reportByParams/reportByParamsTotalPerType.controller';
 import reportByParamsTotalSalesPerMonthController from '../controllers/reportByParams/reportByParamsTotalSalesPerMonth.controller';
 import reportByParamsTotalSoldPerMonthController from '../controllers/reportByParams/reportByParamsTotalSoldPerMonth.controller';
@@ -31,7 +32,7 @@ reportRoutes.get('/valor-total-comissao', reportTotalComissionController);
 //Novos clientes naquele Mês
 reportRoutes.get('/novos-clientes', reportNewCostumersController);
 
-//Rotas aceitando Params ANO/MES
+//Rotas aceitando Params ANO/MES-------------------
 //Novos clientes naquele Mês
 reportRoutes.get(
 	'/novos-clientes/:ano/:mes',
@@ -62,4 +63,9 @@ reportRoutes.get(
 	reportByParamsTotalSoldPerMonthController
 );
 
+//Total da comissão paga para vendedores naquele mes
+reportRoutes.get(
+	'/valor-total-comissao/:ano/:mes',
+	reportByParamsTotalComissionController
+);
 export default reportRoutes;

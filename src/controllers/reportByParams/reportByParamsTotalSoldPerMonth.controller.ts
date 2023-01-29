@@ -1,5 +1,4 @@
 import {Response, Request} from 'express';
-import reportByParamsTotalSalesPerMonthView from '../../views/reportByParams/reportByParamsTotalSalesPerMonth.view';
 import reportByParamsTotalSoldPerMonthView from '../../views/reportByParams/reportByParamsTotalSoldPerMonth.view';
 
 const reportByParamsTotalSoldPerMonthController = async (

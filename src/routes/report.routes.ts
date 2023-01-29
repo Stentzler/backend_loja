@@ -9,6 +9,7 @@ import reportByParamsNewCostumersController from '../controllers/reportByParams/
 import reportByParamsSalesPerTypeController from '../controllers/reportByParams/reportByParamsSalesPerType.controller';
 import reportByParamsTotalPerTypeController from '../controllers/reportByParams/reportByParamsTotalPerType.controller';
 import reportByParamsTotalSalesPerMonthController from '../controllers/reportByParams/reportByParamsTotalSalesPerMonth.controller';
+import reportByParamsTotalSoldPerMonthController from '../controllers/reportByParams/reportByParamsTotalSoldPerMonth.controller';
 
 const reportRoutes = Router();
 
@@ -54,4 +55,11 @@ reportRoutes.get(
 	'/total-vendas/:ano/:mes',
 	reportByParamsTotalSalesPerMonthController
 );
+
+//Valor total de vendas independente da forma
+reportRoutes.get(
+	'/valor-total/:ano/:mes',
+	reportByParamsTotalSoldPerMonthController
+);
+
 export default reportRoutes;

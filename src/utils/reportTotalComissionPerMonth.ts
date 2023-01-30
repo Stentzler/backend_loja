@@ -34,9 +34,12 @@ const reportTotalComissionPerMonth = async (report: any) => {
 		resultComissionPerMonth.push(newObj);
 	}
 
-	return resultComissionPerMonth.sort(
-		(a, b) => Number(b.dateFormat) - Number(a.dateFormat)
-	);
+	return resultComissionPerMonth
+		.sort((a, b) => Number(b.dateFormat) - Number(a.dateFormat))
+		.map(item => {
+			const {dateFormat, ...rest} = item;
+			return rest;
+		});
 };
 
 export default reportTotalComissionPerMonth;

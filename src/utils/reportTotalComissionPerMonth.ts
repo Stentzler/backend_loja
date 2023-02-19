@@ -15,16 +15,14 @@ const reportTotalComissionPerMonth = async (report: any) => {
 	}
 
 	//Agrupando valores em um objeto a partir da Data {key(data): value(totalComissao)}
-	const groupByDate = [
-		saleReport.reduce((obj: any, sale: any) => {
-			obj[sale.dateFormat] = (obj[sale.dateFormat] || 0) + sale.comissaoPaga;
-			return obj;
-		}, {}),
-	];
+	const groupByDate = saleReport.reduce((obj: any, sale: any) => {
+		obj[sale.dateFormat] = (obj[sale.dateFormat] || 0) + sale.comissaoPaga;
+		return obj;
+	}, {});
 
 	//Formatando para array de objetos apartir do Objeto gerado para key=date value=Totalcomissao
 	const resultComissionPerMonth = [];
-	for (const [key, value] of Object.entries(groupByDate[0])) {
+	for (const [key, value] of Object.entries(groupByDate)) {
 		const newObj = {
 			ano: new Date(key).getFullYear(),
 			mes: new Date(key).getMonth() + 1,

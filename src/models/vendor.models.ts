@@ -1,10 +1,42 @@
 import * as mongoose from 'mongoose';
-import {string} from 'yup';
+
+export interface IAddress extends mongoose.Document {
+	cep: string;
+	logradouro: string;
+	complemento: string;
+	bairro: string;
+	localidade: string;
+	uf: string;
+	ibge: string;
+	gia: string;
+	ddd: string;
+	siafi: string;
+	numero: string;
+}
+export interface IVendor extends mongoose.Document {
+	_id: Object;
+	nomeCompleto: string;
+	dataDeNascimento: Date;
+	email: string;
+	telefone: string;
+	cpf: string;
+	endereco: IAddress;
+	dataDeContratacao: Date;
+	percentualDeComissao: number;
+	horarioDeTrabalho: {
+		horarioDeEntrada: string;
+		horarioDeSaida: string;
+	};
+	isActive: boolean;
+	createdAt: Date;
+	updatedAt: Date;
+}
 
 const vendorSchema = new mongoose.Schema(
 	{
 		nomeCompleto: {
 			type: String,
+			uppercase: true,
 			required: [true, 'nome é um campo obrigatório'],
 		},
 		dataDeNascimento: {
@@ -74,4 +106,4 @@ const vendorSchema = new mongoose.Schema(
 	}
 );
 
-export default mongoose.model('Vendor', vendorSchema);
+export default mongoose.model<IVendor>('Vendor', vendorSchema);

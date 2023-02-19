@@ -1,9 +1,25 @@
 import * as mongoose from 'mongoose';
+import {IAddress} from './vendor.models';
+
+export interface ICustomer extends mongoose.Document {
+	_id: Object;
+	nomeCompleto: string;
+	dataDeNascimento: Date;
+	email: string;
+	telefone: string;
+	cpf: string;
+	endereco: IAddress;
+	isActive: boolean;
+	vendedor: Object;
+	createdAt: Date;
+	updatedAt: Date;
+}
 
 const customerSchema = new mongoose.Schema(
 	{
 		nomeCompleto: {
 			type: String,
+			uppercase: true,
 			required: [true, 'nome é um campo obrigatório'],
 		},
 		dataDeNascimento: {
@@ -56,4 +72,4 @@ const customerSchema = new mongoose.Schema(
 	}
 );
 
-export default mongoose.model('Customer', customerSchema);
+export default mongoose.model<ICustomer>('Customer', customerSchema);

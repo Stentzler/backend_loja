@@ -1,13 +1,16 @@
+import {Schema} from 'mongoose';
 import {ICepRequest, IVendorRequest} from '../../interfaces/vendor.interfaces';
-import Vendor from '../../models/vendor.models';
+import Vendor, {IVendor} from '../../models/vendor.models';
 import {AppError} from '../../utils/appError';
 import getCep from '../../utils/getCep';
 
 //@Descricao Cria um novo vendedor
 //@POST /api/vendedores
 //@No token
-const vendorCreateView = async (vendorDetails: IVendorRequest) => {
-	const {email, cpf} = vendorDetails;
+const vendorCreateView = async (
+	vendorDetails: IVendorRequest
+): Promise<IVendor> => {
+	const {email, cpf}: {email: string; cpf: string} = vendorDetails;
 
 	const emailNotUnique = await Vendor.findOne({email});
 	if (emailNotUnique) {
@@ -30,10 +33,7 @@ const vendorCreateView = async (vendorDetails: IVendorRequest) => {
 	} = vendorDetails;
 
 	//Fazendo requisicao de endereco
-	let addressInfo;
-
-	const response: ICepRequest = await getCep(cep);
-	addressInfo = response;
+	const addressInfo: ICepRequest = await getCep(cep);
 
 	//Inserindo número e complemento junto ao endereco
 	addressInfo.numero = vendorDetails.numeroDeResidencia;
@@ -43,12 +43,9 @@ const vendorCreateView = async (vendorDetails: IVendorRequest) => {
 	const convertedDataDeContratacao = new Date(dataDeContratacao);
 	const convertedDataDeNascimento = new Date(dataDeNascimento);
 
-	//Passando Nome para Uppercase
-	createVendorData.nomeCompleto = createVendorData.nomeCompleto.toUpperCase();
-
 	//Registrando vendedor
 	try {
-		const vendor = await Vendor.create({
+		const vendor: IVendor = await Vendor.create({
 			...createVendorData,
 			endereco: {...addressInfo},
 			horarioDeTrabalho: {

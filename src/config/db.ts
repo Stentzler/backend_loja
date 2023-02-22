@@ -13,6 +13,3 @@ const connectDb = async () => {
 };
 
 export {connectDb};
-
-
-//test!
